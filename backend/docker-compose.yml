@@ -3,6 +3,7 @@ version: '3.7'
 services:
   backend:
     container_name: todo-app-backend
+    image: todo-app-backend
     build: ./web
     tty: true
     restart: always
@@ -18,15 +19,22 @@ services:
       - backend_net
   db:
     container_name: todo-app-db
+    image: todo-app-db
     build: ./db
-    restart: always
     ports:
       - 5432:5432
+    volumes:
+      - todo-app-data:/var/lib/postgresql/data
     environment:
+      POSTGRES_DB: admin
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+      DATABASE_HOST: localhost
+    tty: true
     networks:
       - backend_net
+volumes: 
+  todo-app-data:
 
 networks:
   backend_net:

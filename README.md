@@ -1,6 +1,11 @@
 # Intro
 TODOアプリ
 
+# protocol
+```
+docker network create backend_net
+```
+
 # Tech
 ### Frontend
 - React
@@ -21,5 +26,11 @@ TODOアプリ
 - Docker
 
 # Reference
+▼ Nestとmysql
 https://qiita.com/Gma_Gama/items/407ad2f121f6d01a6361
+▼ Typeormについて
 https://qiita.com/yusuke-ka/items/ced5265ccb41ddab25ca
+▼ AppコンテナとDBコンテナを接続
+https://kajindowsxp.com/docker-compose-econnrefused/
+▼ typeormのrepositoryのメソッドたち
+https://www.wakuwakubank.com/posts/732-typeorm-repository/
