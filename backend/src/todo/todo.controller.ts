@@ -1,4 +1,12 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+} from '@nestjs/common';
 import Todo from 'src/entities/todo';
 import { TodoService } from './todo.service';
 
@@ -10,5 +18,18 @@ export class TodoController {
   @HttpCode(HttpStatus.OK)
   findAll(): Promise<Todo[]> {
     return this.service.findAll();
+  }
+
+  @Get(':id')
+  @HttpCode(HttpStatus.OK)
+  findOne(@Param('id') id: number): Promise<Todo> {
+    return this.service.findOne(id);
+  }
+
+  @Post('create')
+  @HttpCode(HttpStatus.CREATED)
+  // TODO: DTOにする
+  async create(@Body() data: Todo): Promise<Todo> {
+    return this.service.create(data);
   }
 }

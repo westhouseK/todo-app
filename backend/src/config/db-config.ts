@@ -1,4 +1,5 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import Todo from 'src/entities/todo';
 import Test from '../entities/test';
 
 const dbConfig: PostgresConnectionOptions = {
@@ -11,6 +12,6 @@ const dbConfig: PostgresConnectionOptions = {
   synchronize: true,
   logging: true,
   logger: 'file',
-  entities: [Test],
+  entities: [Test, Todo], // ここはもしかしたら、いちいち追加しなくてもいいかもしれない
 };
 export default dbConfig;
