@@ -1,7 +1,8 @@
 export class CreateTodoDTO {
-  attr1: string;
+  name: string;
 }
 
 export class UpdateTodoDTO {
-  attr1: string;
+  id: number;
+  name: string;
 }

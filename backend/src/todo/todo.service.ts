@@ -1,17 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import Todo from '../entities/todo';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class TodoService {
+  // private readonly logger = new Logger();
+
   constructor(
     @InjectRepository(Todo)
     private readonly todoRepository: Repository<Todo>,
   ) {}
 
   async findOne(id: number): Promise<Todo> {
-    return this.todoRepository.findOne(id);
+    const todo = await this.todoRepository.findOne(id);
+    Logger.debug(todo);
+    return todo;
   }
 
   async findAll(): Promise<Todo[]> {
@@ -23,13 +27,14 @@ export class TodoService {
   }
 
   async update(id: number, data: Partial<Todo>) {
-    const target = this.findOne(id);
+    const target = await this.findOne(id);
     const updatedTodo = Object.assign(target, data);
-    return this.todoRepository.save(updatedTodo);
+    // TODO: IDが存在しない場合のハンドリング
+    this.todoRepository.save(updatedTodo);
   }
 
   async delete(id: number): Promise<void> {
-    const target = await this.todoRepository.findOne(id);
+    const target = await this.findOne(id);
     this.todoRepository.remove(target);
   }
 }

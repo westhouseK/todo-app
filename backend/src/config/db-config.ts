@@ -11,7 +11,10 @@ const dbConfig: PostgresConnectionOptions = {
   database: 'admin',
   synchronize: true,
   logging: true,
-  logger: 'file',
-  entities: [Test, Todo], // ここはもしかしたら、いちいち追加しなくてもいいかもしれない
+  logger: 'file', // MEMO: ormlogs.logで固定らしい
+  entities: [Test, Todo], // NOTE: ここっていちいち追加するの？
+  // TODO: カスタムロガーにする
+  // logger: new MyCustomLogger()
+
 };
 export default dbConfig;

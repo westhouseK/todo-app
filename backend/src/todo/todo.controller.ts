@@ -1,11 +1,13 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
   Post,
+  Put,
 } from '@nestjs/common';
 import Todo from 'src/entities/todo';
 import { TodoService } from './todo.service';
@@ -26,10 +28,23 @@ export class TodoController {
     return this.service.findOne(id);
   }
 
-  @Post('create')
+  @Post()
   @HttpCode(HttpStatus.CREATED)
-  // TODO: DTOにする
-  async create(@Body() data: Todo): Promise<Todo> {
+  // TODO: DTOとEntityを両立する方法
+  async create(@Body() data: Todo) {
     return this.service.create(data);
+  }
+
+  @Put(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  // TODO: DTOとEntityを両立する方法
+  async update(@Param('id') id: number, @Body() data: Todo): Promise<void> {
+    this.service.update(id, data);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(@Param('id') id: number): Promise<void> {
+    this.service.delete(id);
   }
 }
