@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  backend:
+    container_name: be
+    image: todo-app-backend
+    build: 
+      context: ./backend
+      dockerfile: ./web/Dockerfile
+    tty: true
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /usr/app/
+    depends_on:
+      - db
+    # networks:
+    #   - backend_net
+  db:
+    container_name: db
+    image: todo-app-db
+    build: 
+      context: ./backend
+      dockerfile: ./db/Dockerfile
+    ports:
+      - 5432:5432
+    volumes:
+      - todo-app-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: todo
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      DATABASE_HOST: admin
+      TZ: Asia/Tokyo
+    tty: true
+    # networks:
+    #   - backend_net
+volumes: 
+  todo-app-data:
+
+# networks:
+#   backend_net:
+#     external: true
