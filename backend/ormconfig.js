@@ -13,6 +13,6 @@ module.exports = {
   cli: {
     entitiesDir: 'dist/entities',
   },
-  seeds: ['dist/seeds/*.seed.ts'],
-  factories: ['dist/factories/*.factory.ts'],
+  seeds: [__dirname + '/dist/seeds/*.seed.js'],
+  factories: [__dirname + '/dist/factories/*.factory.js'],
 };
