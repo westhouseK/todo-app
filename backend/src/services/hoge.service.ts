@@ -9,11 +9,12 @@ export class HogeService {
   constructor(
     @InjectRepository(Hoge)
     private hogeRepository: Repository<Hoge>,
+    private a: FugaService,
   ) {}
-  // private a: FugaService,
 
   async find(id: number): Promise<Hoge> {
-    // this.a.find(1);
+    const x = await this.a.find(1);
+    console.log(x);
     return this.hogeRepository.findOne(id);
   }
 }
