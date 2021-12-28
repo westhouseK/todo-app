@@ -9,6 +9,6 @@ export default class Fuga extends BaseEntity {
   id: number;
 
   @Column({ type: 'text' })
-  @Field({ description: 'aaa' })
+  @Field(() => String, { description: 'aaa' })
   name: string;
 }

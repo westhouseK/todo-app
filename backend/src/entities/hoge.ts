@@ -5,11 +5,10 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @ObjectType()
 export default class Hoge extends BaseEntity {
   @PrimaryGeneratedColumn()
-  @Field(() => ID)
+  @Field(() => ID, { description: 'id' })
   id: number;
 
   @Column({ type: 'text' })
-  // @Field(() => String, { description: 'aaa' })
-  @Field({ description: 'aaa' })
+  @Field(() => String, { description: 'name' })
   name: string;
 }
