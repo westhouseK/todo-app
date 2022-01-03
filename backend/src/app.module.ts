@@ -10,7 +10,9 @@ import { AppService } from './app.service';
     GraphQLModule.forRoot({
       autoSchemaFile: true,
       subscriptions: {
-        'graphql-ws': true,
+        'subscriptions-transport-ws': {
+          path: '/graphql',
+        },
       },
     }),
     TypeOrmModule.forRoot(),
