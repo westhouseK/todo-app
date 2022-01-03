@@ -18,8 +18,7 @@ services:
         target: /usr/app/
     depends_on:
       - db
-    # networks:
-    #   - backend_net
+      - redis
   db:
     container_name: db
     image: todo-app-db
@@ -37,11 +36,13 @@ services:
       DATABASE_HOST: admin
       TZ: Asia/Tokyo
     tty: true
-    # networks:
-    #   - backend_net
+  redis:
+    container_name: re
+    image: redis:4.0.10
+    ports:
+      - 6379:6379
+    volumes:
+      - cachedata:/data
 volumes: 
   todo-app-data:
-
-# networks:
-#   backend_net:
-#     external: true
+  cachedata:

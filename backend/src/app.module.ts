@@ -9,6 +9,9 @@ import { AppService } from './app.service';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: true,
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     TypeOrmModule.forRoot(),
     ApiModule,
