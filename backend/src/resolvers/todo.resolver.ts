@@ -1,18 +1,20 @@
+import { Inject } from '@nestjs/common';
 import { Args, Mutation, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
 import Todo from 'src/entities/todo';
 import { TodoService } from 'src/services/todo.service';
 
-const pubSub = new PubSub();
-
 @Resolver(() => Todo)
 export class TodoResolver {
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    @Inject('PUB_SUB') private pubsub: PubSub,
+  ) {}
 
   @Mutation(() => Todo)
   addTodo(@Args('text', { type: () => String }) text: string) {
     const newTodo = this.todoService.create(text);
-    pubSub.publish('todoAdded', { todoAdded: newTodo });
+    this.pubsub.publish('todoAdded', { todoAdded: newTodo });
     return newTodo;
   }
 
@@ -20,6 +22,6 @@ export class TodoResolver {
     name: 'todoAdded',
   })
   addTodoHandler() {
-    return pubSub.asyncIterator('todoAdded');
+    return this.pubsub.asyncIterator('todoAdded');
   }
 }
