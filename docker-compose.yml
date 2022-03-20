@@ -19,6 +19,7 @@ services:
     depends_on:
       - db
       - redis
+      - mongo
   db:
     container_name: db
     image: todo-app-db
@@ -43,6 +44,11 @@ services:
       - 6379:6379
     volumes:
       - cachedata:/data
+  mongo:
+    image: mongo:3.4.18
+    container_name: mo
+    ports:
+      - 27017:27017
 volumes: 
   todo-app-data:
   cachedata:

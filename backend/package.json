@@ -39,8 +39,11 @@
     "faker": "^5.5.3",
     "fastify-secure-session": "^3.0.0",
     "graphql": "^15.5.3",
+    "graphql-redis-subscriptions": "^2.4.2",
     "graphql-subscriptions": "^2.0.0",
     "graphql-tools": "^8.2.0",
+    "ioredis": "^4.28.3",
+    "mongodb": "^4.3.0",
     "pg": "^8.7.1",
     "redis": "3.1.2",
     "reflect-metadata": "^0.1.13",
@@ -83,7 +86,7 @@
       "ts"
     ],
     "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": "/test/.*\\.ts?$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },

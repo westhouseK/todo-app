@@ -13,9 +13,14 @@ export class TodoResolver {
   ) {}
 
   @Mutation(() => Todo)
-  addTodo(@Args('text', { type: () => String }) @Text('text') text: string) {
-    const newTodo = this.todoService.create(text);
-    this.pubsub.publish('todoAdded', { todoAdded: newTodo });
+  async addTodo(
+    @Args('text', { type: () => String }) @Text('text') text: string,
+  ) {
+    const newTodo = await this.todoService.create(text);
+    console.log(newTodo);
+    this.pubsub.publish(this.getRandomInt(2).toString(), {
+      todoAdded: newTodo,
+    });
     return newTodo;
   }
 
@@ -23,6 +28,10 @@ export class TodoResolver {
     name: 'todoAdded',
   })
   addTodoHandler() {
-    return this.pubsub.asyncIterator('todoAdded');
+    return this.pubsub.asyncIterator(this.getRandomInt(2).toString());
+  }
+
+  getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
   }
 }
