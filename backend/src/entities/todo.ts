@@ -1,9 +1,12 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { QueryOptions } from '@nestjs-query/query-graphql';
+import { ArgsType, Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export default class Todo {
+@ArgsType()
+@QueryOptions({ defaultResultSize: 5 })
+export class Todo {
   @PrimaryGeneratedColumn()
   @Field()
   public id!: number;

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Todo } from 'entities/todo';
 import { Repository } from 'typeorm';
-import Todo from 'src/entities/todo';
 
 @Injectable()
 export class TodoService {
@@ -9,6 +9,10 @@ export class TodoService {
     @InjectRepository(Todo)
     private todoRepository: Repository<Todo>,
   ) {}
+
+  async find() {
+    return this.todoRepository.find();
+  }
 
   create(text: string) {
     const todo = this.todoRepository.create({ text, status: 1 });

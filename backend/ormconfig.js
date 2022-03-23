@@ -3,12 +3,12 @@ module.exports = [
     type: 'postgres',
     host: 'db', // コンテナの名前 Error: connect ECONNREFUSED 127.0.0.1:5432
     port: 5432,
-    database: 'todo',
+    database: 'todo', // psql -d todo -U admin
     username: 'admin',
     password: 'admin',
     entities: [__dirname + '/dist/entities/*.js'],
     autoLoadEntities: true,
-    synchronize: false,
+    synchronize: true,
     logging: true,
     cache: false,
     cli: {

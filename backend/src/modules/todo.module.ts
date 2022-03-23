@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TodoResolver } from 'src/resolvers/todo.resolver';
-import Todo from 'src/entities/todo';
-import { TodoService } from 'src/services/todo.service';
 import * as Redis from 'ioredis';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
+import { Todo } from 'entities/todo';
+import { TodoService } from 'services/todo.service';
+import { TodoResolver } from 'resolvers/todo.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Todo])],

@@ -1,6 +1,6 @@
 import { define } from 'typeorm-seeding';
 import Faker from 'faker';
-import Hoge from 'src/entities/hoge';
+import { Hoge } from 'entities/hoge';
 
 define(Hoge, (faker: typeof Faker) => {
   const book = new Hoge();

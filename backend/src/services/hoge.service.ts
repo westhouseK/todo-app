@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Hoge } from 'entities/hoge';
 import { Repository } from 'typeorm';
-import Hoge from 'src/entities/hoge';
 import { FugaService } from './fuga.service';
 
 @Injectable()

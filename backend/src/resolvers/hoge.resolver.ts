@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { Args, Int, Query, Resolver } from '@nestjs/graphql';
-import Hoge from 'src/entities/hoge';
-import { HogeService } from 'src/services/hoge.service';
+import { Hoge } from 'entities/hoge';
+import { HogeService } from 'services/hoge.service';
 
 @Resolver(() => Hoge)
 export class HogeResolver {

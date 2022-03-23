@@ -1,9 +1,17 @@
 import { Inject } from '@nestjs/common';
-import { Args, Mutation, Resolver, Subscription } from '@nestjs/graphql';
+import {
+  Args,
+  Int,
+  Mutation,
+  Query,
+  Resolver,
+  Subscription,
+} from '@nestjs/graphql';
+import { Text } from 'decorators/text.decorator';
+import { Todo } from 'entities/todo';
 import { PubSub } from 'graphql-subscriptions';
-import { Text } from 'src/decorators/text.decorator';
-import Todo from 'src/entities/todo';
-import { TodoService } from 'src/services/todo.service';
+import { TodoItemDTO } from 'interfaces/dto/todo.dto';
+import { TodoService } from 'services/todo.service';
 
 @Resolver(() => Todo)
 export class TodoResolver {
@@ -11,6 +19,12 @@ export class TodoResolver {
     private todoService: TodoService,
     @Inject('PUB_SUB') private pubsub: PubSub,
   ) {}
+
+  @Query(() => [Todo])
+  async getTodos(@Args() dto: Todo) {
+    console.log(dto);
+    return this.todoService.find();
+  }
 
   @Mutation(() => Todo)
   async addTodo(

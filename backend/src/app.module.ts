@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     GraphQLModule.forRoot({
+      path: '/graphql',
       autoSchemaFile: true,
       playground: true,
       subscriptions: {

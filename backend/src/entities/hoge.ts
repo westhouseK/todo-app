@@ -3,7 +3,7 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export default class Hoge extends BaseEntity {
+export class Hoge extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID, { description: 'id' })
   id: number;

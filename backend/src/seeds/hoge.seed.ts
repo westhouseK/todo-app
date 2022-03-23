@@ -1,5 +1,5 @@
-import Fuga from 'src/entities/fuga';
-import Hoge from 'src/entities/hoge';
+import { Fuga } from '../entities/fuga';
+import { Hoge } from 'entities/hoge';
 import { Connection } from 'typeorm';
 import { Factory, Seeder } from 'typeorm-seeding';
 
